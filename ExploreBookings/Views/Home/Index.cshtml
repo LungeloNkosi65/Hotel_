@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+
+}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html; charset=iso-8859-2" http-equiv="Content-Type">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        .mySlides {
+            display: none;
+        }
+    </style>
+</head>
+<br />
+<br />
+<div class="jumbotron">
+    <h2 align="center">Welcome To Easy Bookings</h2>
+    <p class="lead"></p>
+    @*<p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
+
+</div>
+
+<p>Where would you like to stay!!</p>
+<p>Search by City</p>
+
+@using (@Html.BeginForm("HotelView1", "Hotels", FormMethod.Post))
+{
+    <div style="min-width:100% !important">
+        <p style="min-width:100% !important;" placeholder="Route Name">
+            @Html.TextBox("search")
+        </p>
+    </div>
+    <div>
+        <input type="submit" value="search" placeholder="Route Name" />
+    </div>
+}
+<body>
+
+    <h2 class="w3-center"></h2>
+
+    <div class="w3-content w3-section" style="max-width:1000px">
+        <img class="mySlides" src="https://pix10.agoda.net/hotelImages/4862270/0/1c6b57e935f7f6aa015d9478f8c5f252.jpg?s=1024x768" style="width:100%">
+        <img class="mySlides" src="https://pix10.agoda.net/hotelImages/503084/-1/0a62cf8d3bead3938ff3b614f51cabe3.jpg?s=1024x768" style="width:100%">
+        <img class="mySlides" src="https://thumbnails.trvl-media.com/UyGBUB5gfz0AlteJ6sLOsbp3w5o=/500x333/smart/filters:quality(80)/images.trvl-media.com/hotels/1000000/530000/526200/526107/eaee76f5_z.jpg" style="width:100%">
+        <img class="mySlides" src="https://gcs.thesouthafrican.com/2019/11/cc183407-hotels-in-johannesburg-1200x832.jpg" style="width:100%">
+        <img class="mySlides" src="https://pix10.agoda.net/hotelImages/124/1246280/1246280_16061017110043391702.jpg?s=1024x768" style="width:100%">
+    </div>
+    <script>
+        var myIndex = 0;
+        carousel();
+
+        function carousel() {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            myIndex++;
+            if (myIndex > x.length) { myIndex = 1 }
+            x[myIndex - 1].style.display = "block";
+            setTimeout(carousel, 3000); // Change image every 2 seconds
+        }
+    </script>
+
+</body>
+@*<div class="row">
+        <div class="col-md-4">
+            <h2>Getting started</h2>
+            <p>
+                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                enables a clean separation of concerns and gives you full control over markup
+                for enjoyable, agile development.
+            </p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Get more libraries</h2>
+            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Web Hosting</h2>
+            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        </div>
+    </div>*@

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ExploreBookings.Models.Rooms>
+@{
+    ViewBag.Title = "RoomBooking";
+}
+
+<style>
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        max-width: 100% !important;
+        margin: auto;
+        text-align: center;
+        /*            height: 250px !important;*/
+        margin-bottom: 20px !important;
+        border: groove !important;
+    }
+
+        .card:hover {
+            border-radius: 10px;
+            border-color: aqua !important;
+        }
+</style>
+<h2 style="text-align:center; padding-bottom:20px !important">Available Rooms</h2>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-8">
+                <div class="card">
+
+                    <img class="card-img-top" src="data:image/png;base64,@Convert.ToBase64String(item.RoomPicture, 0, item.RoomPicture.Length)" style="width: 200px; height: 150px" alt="" align="left">
+
+                    <div class="card-body" @*align="center"*@>
+                        <h4 class="card-title"> <strong> @Html.DisplayFor(x => item.roomTypes.Type)</strong> </h4>
+                        <p class="card-text">Price :@Html.DisplayFor(modelItem => item.RoomPrice)</p>
+                        <p class="card-text">Room Capacity :@Html.DisplayFor(modelItem => item.RoomCapacity) <i class="fa fa-user" aria-hidden="true"></i></p>
+                        <p class="card-text">Room Description :@Html.DisplayFor(modelItem => item.roomDescription)</p>
+                        <br />
+                        <p>
+                            @if (item.roomTypes.RoomAvailable > 0 && item.roomTypes.RoomAvailable <= 5)
+                            {
+                            <p class="card-text alert-danger">Hurry!! @Html.DisplayFor(modelItem => item.roomTypes.RoomAvailable) Rooms available</p>
+                            <a class="btn btn-default" onclick="location.href='@Url.Action("Create","RoomBookings", new { id=item.RoomId})'">Make Booking &raquo;</a>
+
+                        }
+                        else if (item.roomTypes.RoomAvailable > 5)
+                        {
+                            <p class="card-text alert-success">@Html.DisplayFor(modelItem => item.roomTypes.RoomAvailable) Rooms available</p>
+                            <a class="btn btn-default" onclick="location.href='@Url.Action("Create","RoomBookings", new { id=item.RoomId})'">Make Booking &raquo;</a>
+
+                        }
+                        else
+                        {
+                            <p class="card-text alert-danger">@Html.DisplayFor(modelItem => item.roomTypes.RoomAvailable) Rooms available</p>
+                        }
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            }
+    </div>
+</div>

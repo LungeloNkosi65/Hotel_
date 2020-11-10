@@ -1,0 +1,117 @@
+﻿@model IEnumerable<ExploreBookings.Models.RoomBooking>
+
+@{
+    ViewBag.Title = "ChckIn";
+    var message = TempData["AlertMessage"] ?? string.Empty;
+}
+<script>
+    var msg = '@message';
+    if (msg)
+        alert(msg);
+</script>
+
+<h2 align="center">Check-In -- Check-Out</h2>
+<table class="table table-hover table-striped table-responsive" id="my_list">
+    <thead>
+        <tr class="table-header-row">
+
+            <th class="th-sm">
+                @Html.DisplayNameFor(model => model.RoomType)
+            </th>
+            <th class="th-sm">
+                @Html.DisplayNameFor(model => model.GuestEmail)
+            </th>
+            <th class="th-sm">
+                @Html.DisplayNameFor(model => model.RoomPrice)
+            </th>
+            <th class="th-sm">
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th class="th-sm">
+                @Html.DisplayNameFor(model => model.CheckInDate)
+            </th>
+            <th class="th-sm">
+                @Html.DisplayNameFor(model => model.CheckOutDate)
+            </th>
+            <th class="th-sm">
+                @Html.DisplayNameFor(model => model.NumberOfDays)
+            </th>
+            <th class="th-sm">
+                @Html.DisplayNameFor(model => model.NumberOfPeople)
+            </th>
+            <th class="th-sm">
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GuestEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckInDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckOutDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfDays)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfPeople)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @if (item.Status == "Not yet Checked In!!")
+                {
+                    <a href="@Url.Action("CheckInn", "RoomBookings",new { id = item.RoomBookingId })" onclick="return confirm('Are you sure you want to check in this person, click Ok to Confirm, Or Cancel');" rel="tooltip" title="Check In" class="btn btn-success btn-simple btn-xs"><i class="fa fa-check-square-o"></i></a>
+                }
+                else if (item.Status == "Checked In")
+                {
+                    <a href="@Url.Action("CheckOut", "RoomBookings",new { id = item.RoomBookingId })" onclick="return confirm('Are you sure you want to check out this person, click Ok to Confirm, Or Cancel');" rel="tooltip" title="Check Out" class="btn btn-danger btn-simple btn-xs"><i class="glyphicon glyphicon-remove"></i></a>
+                }
+                else if (item.Status == "Checked In")
+                {
+
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    $('#my_list').dataTable(
+        {
+            dom: 'Bfrtip',
+            lengthMenu: [
+                [10, 25, 50, -1],
+                ['10 rows', '25 rows', '50 rows', 'Show all']
+            ],
+            buttons: [
+                'pageLength', 'csv', 'pdf', 'print'
+            ],
+            language: { search: "" },
+            select: true
+        }
+    );
+    $(".dataTables_filter input").addClass("search-input");
+    $(".dataTables_filter input").attr('placeholder', 'Search');
+    $('#my_list')
+        .removeClass('display')
+        .addClass('table table-striped table-hover');</script>

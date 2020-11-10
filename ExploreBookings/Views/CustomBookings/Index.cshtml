@@ -1,0 +1,105 @@
+﻿@model IEnumerable<ExploreBookings.Models.CustomBooking>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Room.roomDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GuestEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckInDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckOutDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfDays)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfPeople)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfRooms)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HotelAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ManagerEmail)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Room.roomDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoomType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GuestEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoomPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CheckInDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CheckOutDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfDays)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfPeople)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfRooms)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HotelAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ManagerEmail)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RoomBookingId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RoomBookingId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RoomBookingId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,103 @@
+﻿@model IEnumerable<ExploreBookings.Models.RoomBooking>
+
+@{
+    ViewBag.Title = "Index";
+    var message = TempData["AlertMessage"] ?? string.Empty;
+}
+<script>
+    var msg = '@message';
+    if (msg)
+        alert(msg);
+</script>
+<h2 align="center">Bookings</h2>
+
+<table class="table table-hover table-striped table-responsive" id="my_list">
+    <thead>
+        <tr class="table-header-row">
+            <th>
+                @Html.DisplayNameFor(model => model.Room.roomDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GuestEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckInDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckOutDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfDays)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfPeople)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room.roomDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GuestEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckInDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckOutDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfDays)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfPeople)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    $('#my_list').dataTable(
+        {
+            dom: 'Bfrtip',
+            lengthMenu: [
+                [10, 25, 50, -1],
+                ['10 rows', '25 rows', '50 rows', 'Show all']
+            ],
+            buttons: [
+                'pageLength', 'csv', 'pdf', 'print'
+            ],
+            language: { search: "" },
+            select: true
+        }
+    );
+    $(".dataTables_filter input").addClass("search-input");
+    $(".dataTables_filter input").attr('placeholder', 'Search');
+    $('#my_list')
+        .removeClass('display')
+        .addClass('table table-striped table-hover');</script>

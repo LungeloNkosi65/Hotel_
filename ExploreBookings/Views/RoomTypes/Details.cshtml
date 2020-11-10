@@ -1,0 +1,42 @@
+﻿@model ExploreBookings.Models.RoomType
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RoomType</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomAvailable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomAvailable)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfRooms)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfRooms)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RoomtypeId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
